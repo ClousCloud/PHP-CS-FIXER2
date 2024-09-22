@@ -11,6 +11,7 @@ use phpcodestyle\FixerManager;
 class FixCommand extends Command
 {
     protected static $defaultName = 'fix';
+    private $fixerManager;
 
     protected function configure() : void
     {
