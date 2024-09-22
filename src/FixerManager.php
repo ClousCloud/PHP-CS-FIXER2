@@ -2,7 +2,7 @@
 
 namespace phpcodestyle;
 
-use phpcodestyle\fixers\Fixers\FixerInterface;
+use phpcodestyle\fixers\FixerInterface;
 
 class FixerManager
 {
