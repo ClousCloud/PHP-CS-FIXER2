@@ -29,10 +29,8 @@ class FixCommand extends Command
     {
         $path = $input->getArgument('path');
 
-        // Validate the path before proceeding
-        if (!is_string($path) || !file_exists($path)) {
-            $output->writeln("<error>Invalid path: {$path}</error>");
-            return Command::FAILURE;
+        if (!is_string($path)) {
+            throw new \InvalidArgumentException('Path must be a string.');
         }
 
         $this->fixerManager->fix($path);
