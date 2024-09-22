@@ -12,7 +12,7 @@ class FixCommand extends Command
 {
     protected static $defaultName = 'fix';
 
-    protected function configure()
+    protected function configure() : void
     {
         $this
             ->setDescription('Fix PHP code style.')
