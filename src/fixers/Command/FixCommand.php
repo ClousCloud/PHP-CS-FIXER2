@@ -21,6 +21,7 @@ class FixCommand extends Command
     protected function configure(): void
     {
         $this
+            ->setName('fix')
             ->setDescription('Fix PHP code style.')
             ->addArgument('path', InputArgument::REQUIRED, 'The path to the PHP files.', 'string');
     }
