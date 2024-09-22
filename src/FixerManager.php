@@ -29,6 +29,10 @@ class FixerManager
 
     public function fix(string $path): void
     {
+        if (!is_string($path)) {
+            throw new \InvalidArgumentException('Expected a string for $path');
+        }
+
         $files = glob($path . '/*.php');
         if ($files === false) {
             return;
@@ -40,11 +44,11 @@ class FixerManager
                 continue;
             }
 
-            foreach ($this->fixers as $fixer) {
-                $content = $fixer->fix($content);
-            }
+        foreach ($this->fixers as $fixer) {
+            $content = $fixer->fix($content);
+        }
 
-            file_put_contents($file, $content);
+        file_put_contents($file, $content);
         }
     }
 }
