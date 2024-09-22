@@ -13,24 +13,27 @@ class FixCommand extends Command
     protected static $defaultName = 'fix';
     private $fixerManager;
 
-    protected function configure() : void
+    protected function configure(): void
     {
         $this
             ->setDescription('Fix PHP code style.')
             ->addArgument('path', InputArgument::REQUIRED, 'The path to the PHP files.');
     }
 
-public function execute(InputInterface $input, OutputInterface $output): int
-{
-    $path = $input->getArgument('path');
-    
-    // Pastikan $path adalah string sebelum memanggil fix()
-    if (!is_string($path)) {
-        throw new \InvalidArgumentException('Path harus berupa string.');
-    }
+    public function execute(InputInterface $input, OutputInterface $output): int
+    {
+        $path = $input->getArgument('path');
 
-    $this->fixerManager->fix($path);
-    
-    return Command::SUCCESS;
-}
+        // Validate the path before proceeding
+        if (!is_string($path) || !file_exists($path)) {
+            $output->writeln("<error>Invalid path: {$path}</error>");
+            return Command::FAILURE;
+        }
+
+        $this->fixerManager->fix($path);
+
+        $output->writeln("<info>PHP code style fixed successfully.</info>");
+
+        return Command::SUCCESS;
+    }
 }
