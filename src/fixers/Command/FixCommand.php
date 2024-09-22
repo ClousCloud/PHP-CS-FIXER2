@@ -6,26 +6,37 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use phpcodestyle\fixers\FixerManager;
+use phpcodestyle\FixerManager;
 
 class FixCommand extends Command
 {
     protected static $defaultName = 'fix';
+    private FixerManager $fixerManager;
 
-    protected function configure()
+    public function __construct(FixerManager $fixerManager)
+    {
+        $this->fixerManager = $fixerManager;
+    }
+
+    protected function configure(): void
     {
         $this
             ->setDescription('Fix PHP code style.')
-            ->addArgument('path', InputArgument::REQUIRED, 'The path to the PHP files.');
+            ->addArgument('path', InputArgument::REQUIRED, 'The path to the PHP files.', 'string');
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output)
+    public function execute(InputInterface $input, OutputInterface $output): int
     {
         $path = $input->getArgument('path');
-        $manager = new FixerManager();
-        $manager->fix($path);
-        
-        $output->writeln('Code style fixed.');
+
+        if (!is_string($path)) {
+            throw new \InvalidArgumentException('Path must be a string.');
+        }
+
+        $this->fixerManager->fix($path);
+
+        $output->writeln("<info>PHP code style fixed successfully.</info>");
+
         return Command::SUCCESS;
     }
 }

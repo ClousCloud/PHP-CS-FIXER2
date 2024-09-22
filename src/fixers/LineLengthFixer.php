@@ -13,9 +13,8 @@ class LineLengthFixer implements FixerInterface
 
     public function fix(string $content): string
     {
-        return preg_replace_callback('/^.{'.($this->maxLength + 1).',}$/m', function ($matches) {
-            return wordwrap($matches[0], $this->maxLength);
-        }, $content);
+        $result = preg_replace('/.{100}/', '$0' . PHP_EOL, $content);
+        return $result !== null ? $result : $content;
     }
 
     public function getDescription(): string

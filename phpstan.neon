@@ -1,0 +1,10 @@
+parameters:
+    level: max
+    paths:
+        - src
+        - tests
+    excludePaths:
+        - vendor
+    checkMissingIterableValueType: true
+    checkGenericClassInNonGenericObjectType: true
+    checkMissingTypehints: true

@@ -5,7 +5,7 @@ use phpcodestyle\fixers\IndentationFixer;
 
 class IndentationFixerTest extends TestCase
 {
-    public function testFix()
+    public function testFix() : void
     {
         $fixer = new IndentationFixer();
         $content = "    function test() {}\n    function anotherTest() {}";
