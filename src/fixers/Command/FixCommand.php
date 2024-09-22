@@ -19,7 +19,7 @@ class FixCommand extends Command
             ->addArgument('path', InputArgument::REQUIRED, 'The path to the PHP files.');
     }
 
-    public function execute(InputInterface $input, OutputInterface $output): int
+public function execute(InputInterface $input, OutputInterface $output): int
 {
     $path = $input->getArgument('path');
     
@@ -32,6 +32,4 @@ class FixCommand extends Command
     
     return Command::SUCCESS;
 }
- return Command::SUCCESS;
-    }
 }
