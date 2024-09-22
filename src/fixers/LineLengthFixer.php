@@ -11,7 +11,7 @@ class LineLengthFixer implements FixerInterface
         $this->maxLength = $maxLength;
     }
 
-    public function fix(string $content): void
+    public function fix(string $content): string
     {
         return preg_replace_callback('/^.{'.($this->maxLength + 1).',}$/m', function ($matches) {
             return wordwrap($matches[0], $this->maxLength);
