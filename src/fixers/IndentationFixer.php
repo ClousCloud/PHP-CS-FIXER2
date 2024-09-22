@@ -6,9 +6,10 @@ class IndentationFixer implements FixerInterface
 {
     public function fix(string $content): string
     {
-        // Mengganti 4 spasi menjadi tab
-        return preg_replace('/^ {4}/m', "\t", $content);
+        $result = preg_replace('/^ {4}/m', "\t", $content);
+        return $result !== null ? $result : $content;
     }
+
 
     public function getDescription(): string
     {
