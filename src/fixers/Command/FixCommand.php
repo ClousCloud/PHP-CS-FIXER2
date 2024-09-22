@@ -19,13 +19,19 @@ class FixCommand extends Command
             ->addArgument('path', InputArgument::REQUIRED, 'The path to the PHP files.');
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output)
-    {
-        $path = $input->getArgument('path');
-        $manager = new FixerManager();
-        $manager->fix($path);
-        
-        $output->writeln('Code style fixed.');
-        return Command::SUCCESS;
+    public function execute(InputInterface $input, OutputInterface $output): int
+{
+    $path = $input->getArgument('path');
+    
+    // Pastikan $path adalah string sebelum memanggil fix()
+    if (!is_string($path)) {
+        throw new \InvalidArgumentException('Path harus berupa string.');
+    }
+
+    $this->fixerManager->fix($path);
+    
+    return Command::SUCCESS;
+}
+ return Command::SUCCESS;
     }
 }
