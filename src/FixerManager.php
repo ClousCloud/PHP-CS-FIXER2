@@ -30,7 +30,7 @@ class FixerManager
     public function fix(string $path): void
     {
         if (!is_string($path)) {
-            throw new \InvalidArgumentException('Expected a string for $path');
+            throw new \InvalidArgumentException('Parameter $path harus berupa string.');
         }
 
         $files = glob($path . '/*.php');
