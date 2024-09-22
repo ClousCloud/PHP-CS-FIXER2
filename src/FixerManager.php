@@ -28,27 +28,24 @@ class FixerManager
     }
 
     public function fix(string $path): void
-    {
-        if (!is_string($path)) {
-            throw new \InvalidArgumentException('Parameter $path harus berupa string.');
-        }
+{
+    $files = glob($path . '/*.php');
+    if ($files === false) {
+        return;
+    }
 
-        $files = glob($path . '/*.php');
-        if ($files === false) {
-            return;
+    foreach ($files as $file) {
+        $content = file_get_contents($file);
+        if ($content === false) {
+            continue;
         }
-
-        foreach ($files as $file) {
-            $content = file_get_contents($file);
-            if ($content === false) {
-                continue;
-            }
 
         foreach ($this->fixers as $fixer) {
             $content = $fixer->fix($content);
         }
 
         file_put_contents($file, $content);
-        }
     }
+}
+
 }
