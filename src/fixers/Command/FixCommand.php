@@ -22,7 +22,7 @@ class FixCommand extends Command
     {
         $this
             ->setDescription('Fix PHP code style.')
-            ->addArgument('path', InputArgument::REQUIRED, 'The path to the PHP files.', 'string')
+            ->addArgument('path', InputArgument::REQUIRED, 'The path to the PHP files.', 'string');
     }
 
     public function execute(InputInterface $input, OutputInterface $output): int
