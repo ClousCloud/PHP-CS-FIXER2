@@ -19,11 +19,11 @@ class FixerManager
         $this->fixers = [];
 
         if ($this->config['rules']['indentation']) {
-            $this->fixers[] = new Fixers\IndentationFixer();
+            $this->fixers[] = new fixers\IndentationFixer();
         }
 
         if ($this->config['rules']['line_length']) {
-            $this->fixers[] = new Fixers\LineLengthFixer($this->config['rules']['line_length']);
+            $this->fixers[] = new fixers\LineLengthFixer($this->config['rules']['line_length']);
         }
     }
 
