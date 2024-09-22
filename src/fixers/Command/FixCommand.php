@@ -11,13 +11,18 @@ use phpcodestyle\FixerManager;
 class FixCommand extends Command
 {
     protected static $defaultName = 'fix';
-    private $fixerManager;
+    private FixerManager $fixerManager;
+
+    public function __construct(FixerManager $fixerManager)
+    {
+        $this->fixerManager = $fixerManager;
+    }
 
     protected function configure(): void
     {
         $this
             ->setDescription('Fix PHP code style.')
-            ->addArgument('path', InputArgument::REQUIRED, 'The path to the PHP files.');
+            ->addArgument('path', InputArgument::REQUIRED, 'The path to the PHP files.', 'string')
     }
 
     public function execute(InputInterface $input, OutputInterface $output): int
