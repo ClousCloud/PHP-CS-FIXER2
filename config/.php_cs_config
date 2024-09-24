@@ -1,0 +1,12 @@
+<?php
+
+return [
+    'rules' => [
+        'indentation' => true,
+        'line_length' => 80,
+    ],
+    'paths' => [
+        'src/',
+        'tests/'
+    ]
+];
