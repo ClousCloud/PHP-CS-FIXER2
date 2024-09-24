@@ -15,7 +15,7 @@ class FixCommand extends Command
 
     public function __construct(FixerManager $fixerManager)
     {
-        parent::__construct;
+        parent::__construct();
         
         $this->fixerManager = $fixerManager;
     }
